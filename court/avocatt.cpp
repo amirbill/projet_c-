@@ -8,6 +8,8 @@
 #include"avocat.h"
 
 
+//test
+
 avocatt::avocatt()
 {
     cin="" ;
