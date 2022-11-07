@@ -503,7 +503,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="ajout">
      <attribute name="title">
@@ -1281,7 +1281,7 @@ background-color: rgb(255, 255, 255);</string>
          <x>10</x>
          <y>80</y>
          <width>261</width>
-         <height>251</height>
+         <height>281</height>
         </rect>
        </property>
        <property name="widgetResizable">
@@ -1293,7 +1293,7 @@ background-color: rgb(255, 255, 255);</string>
           <x>0</x>
           <y>0</y>
           <width>259</width>
-          <height>249</height>
+          <height>279</height>
          </rect>
         </property>
         <widget class="QCheckBox" name="checkBox">
@@ -1361,7 +1361,7 @@ background-color: rgb(255, 255, 255);</string>
           <string>specialite</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_111">
+        <widget class="QLineEdit" name="lineEdit_recherche">
          <property name="geometry">
           <rect>
            <x>100</x>
@@ -1388,6 +1388,19 @@ background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>Chercher :</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>240</y>
+           <width>93</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>chercher</string>
          </property>
         </widget>
        </widget>

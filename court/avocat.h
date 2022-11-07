@@ -25,6 +25,10 @@ private slots:
 
     void on_pushButton_modifier_clicked();
 
+    void on_pushButton_3_clicked();
+
+   void on_pushButton_clicked();
+
 private:
     Ui::avocat *ui;
     avocatt o ;

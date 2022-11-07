@@ -98,7 +98,7 @@ void avocat::on_pushButton_modifier_clicked()
     avocatt v(cin,nom,prenom,age,numerotele,specialite,adr,anneeex);
 
 
-   v.setcin(ui->lineEdit_111->text()) ;
+   v.setcin(ui->lineEdit_recherche->text()) ;
    bool test=v.modify(v.get_cin());
 
     if (test)
@@ -139,3 +139,49 @@ void avocat::on_pushButton_modifier_clicked()
 
 }*/
 }
+
+void avocat::on_pushButton_3_clicked()
+{
+
+ avocatt v ;
+    ui->tabaffichage->setModel(v.tri()) ;
+    bool test=v.tri() ;
+
+    QMessageBox msg ;
+    if (test)
+    {
+     msg.setText("tri affectee");
+        ui->tabaffichage->setModel(v.tri());
+    }
+    else
+     msg.setText("tri non affectee");
+     msg.exec();
+}
+
+void avocat::on_pushButton_clicked()
+{
+    avocatt v ;
+  QString cin = ui->lineEdit_recherche->text() ;
+  bool test=v.chercher() ;
+
+  if (cin.isEmpty())
+  {
+      QMessageBox::critical(0,qApp->tr("erreur"),qApp->tr("veillez remplir le champ vide "),QMessageBox::Cancel);
+  }
+  else
+  {
+      QMessageBox msgBox ;
+      if (test)
+      {
+          msgBox.setText("element trouve ");
+
+          ui->tabaffichage->setModel(v.chercher()) ;
+      }
+
+     else
+      msgBox.setText("element trouve ");
+      msgBox.exec();
+
+  }
+}
+

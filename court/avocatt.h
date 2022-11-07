@@ -34,7 +34,8 @@ public:
     QSqlQueryModel * afficher() ;
      bool supprimer(QString) ;
      bool modify(QString);
-     bool tri() ;
+    QSqlQueryModel * tri() ;
+    QSqlQueryModel * chercher() ;
 private:
     QString cin,nom,prenom,specialite,adr,age, numerotele,anneeex ;
 

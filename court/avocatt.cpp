@@ -126,6 +126,35 @@ QSqlQueryModel* avocatt::afficher()
 }
 
 
+QSqlQueryModel* avocatt::tri()
+{
+    QSqlQueryModel* model=new QSqlQueryModel() ;
+    model->setQuery("SELECT* FROM avocat ORDER BY age");
+    model->setHeaderData(0, Qt::Horizontal,QObject:: tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal,QObject:: tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal,QObject:: tr("prenom"));
+    model->setHeaderData(3, Qt::Horizontal,QObject:: tr("age"));
+    model->setHeaderData(4, Qt::Horizontal,QObject:: tr("numerotele"));
+    model->setHeaderData(5, Qt::Horizontal,QObject:: tr("specialite"));
+    model->setHeaderData(6, Qt::Horizontal,QObject:: tr("adr"));
+    model->setHeaderData(7, Qt::Horizontal,QObject:: tr("anneeex"));
+
+    return model ;
+
+}
+
+QSqlQueryModel* avocatt::chercher()
+{
+    QSqlQuery query;
+    query.prepare("SELECT* FROM avocat WHERE cin=:cin") ;
+    query.bindValue(":cin",cin);
+    query.exec() ;
+    QSqlQueryModel *model=new QSqlQueryModel;
+    model->setQuery(query) ;
+    return model ;
+}
+
+
 bool avocatt :: modify(QString cin)
 {
     QSqlQuery query ;
