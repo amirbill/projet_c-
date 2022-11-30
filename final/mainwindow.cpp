@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
                connect(ui->browseBtn, SIGNAL(clicked()), this, SLOT(browse()));
 
    //arduino
-              int ret=A1.connect_arduino();
+            /* int ret=A1.connect_arduino();
                    switch(ret)
                    {
                    case(0):qDebug()<<"arduino is available and connected to:"<<A1.getarduino_port_name();
@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
                        break;
                    case(-1):qDebug()<<"arduino is not available";
                        break;
-                   }
+                   }*/
   QObject::connect(A1.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer le slot update_label suite à la reception du signal readyRead (reception des données).
 }
 MainWindow::~MainWindow()
