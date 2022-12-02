@@ -39,7 +39,7 @@ MainFarahCpp::MainFarahCpp(QWidget *parent) :
                connect(ui->browseBtn, SIGNAL(clicked()), this, SLOT(browse()));
 
    //arduino
-            /* int ret=A1.connect_arduino();
+            int ret=A1.connect_arduino();
                    switch(ret)
                    {
                    case(0):qDebug()<<"arduino is available and connected to:"<<A1.getarduino_port_name();
@@ -48,8 +48,8 @@ MainFarahCpp::MainFarahCpp(QWidget *parent) :
                        break;
                    case(-1):qDebug()<<"arduino is not available";
                        break;
-                   }*/
-//QObject::connect(A1.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer le slot update_label suite à la reception du signal readyRead (reception des données).
+                   }
+QObject::connect(A1.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer le slot update_label suite à la reception du signal readyRead (reception des données).
 
 
 }
@@ -270,53 +270,32 @@ void MainFarahCpp::on_pb_excel_clicked()
             }
 
 }
-/*void MainFarahCpp::update_label()
+void MainFarahCpp::update_label()
 {
-    notification N;
     data=A1.read_from_arduino();
-QSqlQuery query;
-QString nom ;
-    if(data=="1")
-{
-        N.notification_ouverture();
-        ui->label_3arduino->setText("OUVERT"); // si les données reçues de arduino via la liaison série sont égales à 1
-          QMessageBox::information(this, tr("Card is valid!"), "ACCESS GIVEN , welcome");
+    if(data!="")
+    {
+    qDebug()<<data;
+    int test=A1.chercherid(data);
+        if(test==1)
+    {
+            // N.notification_ouverture();
+            ui->label_3arduino->setText("OUVERT"); // si les données reçues de arduino via la liaison série sont égales à 1
+             // QMessageBox::information(this, tr("Card is valid!"), "ACCESS GIVEN , welcome");
+    A1.write_to_arduino("1");
+    }
+        else if (test!=1)
 
-     query.prepare("select NOM from EMPLOYE where CIN=777 ");
-//query.bindValue(0 ,nom) ;
-             query.exec();
-             query.first();
-            // nom=query.value(0);
-             qDebug()<<query.value(0);
-             ui->label_nom->setText(nom);
-     }
-    // alors afficher oouvert
+           {
+                A1.write_to_arduino("0");
+           // N.notification_fermeture();
+            ui->label_3arduino->setText("FERMER");
+         //alors afficher fermer
+    }
+    }
+
+
 }
-    else if (data=="0")
-
-       {
-        N.notification_fermeture();
-        ui->label_3arduino->setText("FERMER");
-     //alors afficher fermer
-}
-}
-*/
-
-/*void MainWindow::on_boutton_login_clicked()
-{
-    QString login=ui->lineEdit_login->text() ;
-    QString mdp=ui->lineEdit_2_mdp->text() ;
-   if((login=="farah" )&& (mdp=="2" ))
-
-       ui->stackedWidget__2->setCurrentIndex(1);
-   else if ((login=="arij" )&& (mdp=="3" ))
-        ui->stackedWidget__2->setCurrentIndex(2);
-   else
-       QMessageBox::information(nullptr, QObject::tr("DOMMAGE"),
-                  QObject::tr("connection successful.\n"
-                               "Click Cancel to exit."), QMessageBox::Cancel);
-}*/
-
 void MainFarahCpp::on_pushButton_clicked()
 {
     QString strStream;
